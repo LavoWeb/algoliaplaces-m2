@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <sales>
+            <algolia_places>
+                <enabled>0</enabled>
+                <app_id>add yours</app_id>
+                <api_key>add yours</api_key>
+            </algolia_places>
+        </sales>
+    </default>
+</config>

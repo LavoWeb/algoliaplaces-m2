@@ -1,0 +1,33 @@
+<?php
+    /** @var Lavoweb\AlgoliaPlaces\Block\Checkout\AlgoliaPlaces $block */
+    if ($block->isEnabled()) :
+?><script type="text/javascript">
+    require(['algoliaplaces', 'jquery'], function(places, jQuery){
+        let isFired = false;
+        jQuery(document).ajaxComplete(function() {
+            if (!isFired) {
+                isFired = true;
+                var placesAutocomplete = places({
+                    appId: '<?= $block->getAppId() ?>',
+                    apiKey: '<?= $block->getApiKey() ?>',
+                    container: document.querySelector('.street input'),
+                    templates: {
+                        value: function(suggestion) {
+                            return suggestion.name;
+                        }
+                    }
+                }).configure({
+                    type: 'address'
+                });
+                placesAutocomplete.on('change', function resultSelected(e) {
+                    jQuery(document.querySelector('select[name="country_id"]')).val(e.suggestion.countryCode.toUpperCase());
+                    document.querySelector('.street input').value = e.suggestion.name || '';
+                    jQuery(document.querySelector('select[name="region_id"]')).val(e.suggestion.administrative || '');
+                    document.querySelector('div[name="shippingAddress.city"] input').value = e.suggestion.city || '';
+                    document.querySelector('div[name="shippingAddress.postcode"] input').value = e.suggestion.postcode || '';
+                });
+            }
+        });
+    });
+</script>
+<?php endif;
