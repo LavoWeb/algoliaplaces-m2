@@ -3,7 +3,7 @@
     <type name="Magento\Checkout\Model\CompositeConfigProvider">
         <arguments>
             <argument name="configProviders" xsi:type="array">
-                <item name="algolia_places_config_provider" xsi:type="object">Lavoweb\AlgoliaPlaces\Model\ConfigProvider</item>
+                <item name="algolia_places_config_provider" xsi:type="object">\Lavoweb\AlgoliaPlaces\Model\ConfigProvider</item>
             </argument>
         </arguments>
     </type>

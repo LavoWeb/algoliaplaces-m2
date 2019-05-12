@@ -5,7 +5,9 @@ namespace Lavoweb\AlgoliaPlaces\Model;
 use Magento\Checkout\Model\ConfigProviderInterface;
 
 /**
- * Class SampleConfigProvider
+ * Class ConfigProvider
+ *
+ * @package Lavoweb\AlgoliaPlaces\Model
  */
 class ConfigProvider implements ConfigProviderInterface
 {
@@ -16,6 +18,11 @@ class ConfigProvider implements ConfigProviderInterface
     /** @var \Magento\Framework\App\Config\ScopeConfigInterface */
     protected $scopeConfig;
 
+    /**
+     * ConfigProvider constructor.
+     *
+     * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
+     */
     public function __construct(
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
     )
@@ -23,16 +30,31 @@ class ConfigProvider implements ConfigProviderInterface
         $this->scopeConfig = $scopeConfig;
     }
 
+    /**
+     * Is Enabled
+     *
+     * @return boolean
+     */
     public function isEnabled()
     {
         return $this->scopeConfig->getValue(self::XML_PATH_ENABLED, \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
     }
 
+    /**
+     * Get App Id
+     *
+     * @return string
+     */
     public function getAppId()
     {
         return $this->scopeConfig->getValue(self::XML_PATH_APP_ID, \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
     }
 
+    /**
+     * Get Api Key
+     *
+     * @return string
+     */
     public function getApiKey()
     {
         return $this->scopeConfig->getValue(self::XML_PATH_API_KEY, \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
